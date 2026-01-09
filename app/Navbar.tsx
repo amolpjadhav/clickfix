@@ -6,16 +6,15 @@ import AITerminal from './AITerminal';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <button onClick={() => setIsTerminalOpen(true)} className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors group">
-            <Terminal className="w-5 h-5 group-hover:animate-pulse" />
+          <div className="flex items-center gap-2 text-cyan-400">
+            <Terminal className="w-5 h-5" />
             <span className="font-mono font-bold tracking-tight text-slate-100">ClickFix.dev</span>
-          </button>
+          </div>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8 font-mono text-sm text-slate-400">
@@ -47,7 +46,7 @@ export default function Navbar() {
           </div>
         )}
       </nav>
-      <AITerminal isOpen={isTerminalOpen} onClose={() => setIsTerminalOpen(false)} />
+      <AITerminal />
     </>
   );
 }
