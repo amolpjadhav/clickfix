@@ -27,9 +27,9 @@ export default function Hero() {
               BOOK CONSULTATION
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <button className="px-8 py-4 border border-slate-700 hover:border-slate-500 text-slate-300 font-mono rounded-sm transition-all">
-              VIEW BLUEPRINTS
-            </button>
+            <a href="#services" className="px-8 py-4 border border-slate-700 hover:border-slate-500 text-slate-300 font-mono rounded-sm transition-all flex items-center justify-center">
+              VIEW SERVICES
+            </a>
           </div>
 
           {/* Trust Signals / Stats */}
