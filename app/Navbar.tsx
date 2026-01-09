@@ -21,6 +21,8 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8 font-mono text-sm text-slate-400">
             <a href="#services" className="hover:text-cyan-400 transition-colors">Services</a>
             <a href="#process" className="hover:text-cyan-400 transition-colors">Process</a>
+            <a href="#blog" className="hover:text-cyan-400 transition-colors">Blog</a>
+            <a href="#community" className="hover:text-cyan-400 transition-colors">Community</a>
             <a href="#faq" className="hover:text-cyan-400 transition-colors">FAQ</a>
             <a href="#contact" className="px-4 py-2 bg-cyan-500/10 text-cyan-400 border border-cyan-500/50 rounded-sm hover:bg-cyan-500 hover:text-slate-950 transition-all">
               Book Consultation
@@ -38,6 +40,8 @@ export default function Navbar() {
           <div className="md:hidden bg-slate-950 border-b border-slate-800 p-6 space-y-4 font-mono text-sm">
             <a href="#services" className="block text-slate-400 hover:text-cyan-400" onClick={() => setIsOpen(false)}>Services</a>
             <a href="#process" className="block text-slate-400 hover:text-cyan-400" onClick={() => setIsOpen(false)}>Process</a>
+            <a href="#blog" className="block text-slate-400 hover:text-cyan-400" onClick={() => setIsOpen(false)}>Blog</a>
+            <a href="#community" className="block text-slate-400 hover:text-cyan-400" onClick={() => setIsOpen(false)}>Community</a>
             <a href="#faq" className="block text-slate-400 hover:text-cyan-400" onClick={() => setIsOpen(false)}>FAQ</a>
             <a href="#contact" className="block text-cyan-400 font-bold" onClick={() => setIsOpen(false)}>Book Consultation</a>
           </div>

@@ -2,7 +2,10 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import TechStack from "./TechStack";
 import Services from "./Services";
+import Projects from "./Projects";
 import Process from "./Process";
+import Blog from "./Blog";
+import Community from "./Community";
 import FAQ from "./FAQ";
 import ContactForm from "./ContactForm";
 
@@ -13,7 +16,10 @@ export default function Home() {
       <TechStack />
       <Hero />
       <Services />
+      <Projects />
       <Process />
+      <Blog />
+      <Community />
       <FAQ />
       <ContactForm />
       
@@ -23,4 +29,3 @@ export default function Home() {
     </main>
   );
 }
-  

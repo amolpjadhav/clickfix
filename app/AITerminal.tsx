@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { X, Terminal, Send, ChevronRight } from 'lucide-react';
+import { X, Terminal, Send, ChevronRight, GripHorizontal } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -29,6 +29,10 @@ export default function AITerminal({ isOpen, onClose }: { isOpen: boolean; onClo
   const [isSystemTyping, setIsSystemTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const isDragging = useRef(false);
+  const dragStart = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -40,6 +44,37 @@ export default function AITerminal({ isOpen, onClose }: { isOpen: boolean; onClo
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging.current) return;
+      setPosition({
+        x: e.clientX - dragStart.current.x,
+        y: e.clientY - dragStart.current.y
+      });
+    };
+
+    const handleMouseUp = () => {
+      isDragging.current = false;
+    };
+
+    if (isOpen) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    }
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isOpen]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = true;
+    dragStart.current = { 
+      x: e.clientX - position.x, 
+      y: e.clientY - position.y 
+    };
+  };
 
   if (!isOpen) return null;
 
@@ -109,11 +144,18 @@ export default function AITerminal({ isOpen, onClose }: { isOpen: boolean; onClo
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-      <div className="w-full max-w-2xl bg-slate-950 border border-slate-800 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[600px] max-h-[80vh] ring-1 ring-cyan-500/20 animate-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 pointer-events-none">
+      <div 
+        className="w-full max-w-lg bg-slate-950 border border-slate-800 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[500px] max-h-[80vh] ring-1 ring-cyan-500/20 animate-in zoom-in-95 duration-200 pointer-events-auto"
+        style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
+      >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-800">
+        <div 
+          className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-800 cursor-move select-none"
+          onMouseDown={handleMouseDown}
+        >
           <div className="flex items-center gap-2 text-cyan-400">
+            <GripHorizontal className="w-4 h-4 text-slate-600" />
             <Terminal className="w-4 h-4" />
             <span className="font-mono text-sm font-bold tracking-wider">TERMINAL_UPLINK</span>
           </div>
