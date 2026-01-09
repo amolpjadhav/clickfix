@@ -1,8 +1,8 @@
 export default function FAQ() {
   const faqs = [
     {
-      q: "What exactly is 'Digital Debt'?",
-      a: "It's the accumulation of quick fixes, outdated libraries, and architectural shortcuts that eventually slow down development and cause outages. I pay this debt down so you can move fast again."
+      q: "Do you build apps from scratch?",
+      a: "Yes. I specialize in end-to-end development for both web and mobile platforms, taking your idea from concept to launch."
     },
     {
       q: "Do you work with early-stage startups?",
@@ -10,7 +10,7 @@ export default function FAQ() {
     },
     {
       q: "Are you an agency?",
-      a: "No. I am a solo principal engineer. You work directly with me, not a junior developer managed by an account executive."
+      a: "No. I am a solo product engineer. You work directly with me"
     }
   ];
 
@@ -18,7 +18,7 @@ export default function FAQ() {
     <section id="faq" className="w-full py-24">
       <div className="max-w-3xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-white font-mono mb-12 text-center">
-          System <span className="text-lime-400">Queries</span>
+          Common <span className="text-lime-400">Questions</span>
         </h2>
         
         <div className="space-y-6">

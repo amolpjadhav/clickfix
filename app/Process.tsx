@@ -4,18 +4,18 @@ export default function Process() {
   const steps = [
     {
       icon: Search,
-      title: "Diagnostic Audit",
-      desc: "I dive deep into your codebase and infrastructure to identify bottlenecks, security risks, and architectural flaws."
+      title: "Discovery & Planning",
+      desc: "We start by discussing your vision, requirements, and business goals. I analyze technical feasibility and create a clear roadmap."
     },
     {
       icon: Wrench,
-      title: "Surgical Repair",
-      desc: "I execute high-impact fixes and refactors. No complete rewrites—just targeted engineering to stabilize your system."
+      title: "Development",
+      desc: "I build your application using industry best practices, with regular updates and demos so you're always in the loop."
     },
     {
       icon: TrendingUp,
-      title: "Scale & Handover",
-      desc: "Once stable, I optimize for growth and provide detailed documentation so your team can maintain velocity."
+      title: "Launch & Support",
+      desc: "I handle the deployment to production and provide ongoing support to ensure your users have a seamless experience."
     }
   ];
 
@@ -24,10 +24,10 @@ export default function Process() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white font-mono mb-4">
-            Engagement <span className="text-cyan-400">Protocol</span>
+            Project <span className="text-cyan-400">Workflow</span>
           </h2>
           <p className="text-slate-400 max-w-2xl">
-            A transparent, results-driven workflow designed to minimize disruption and maximize system stability.
+            A transparent, collaborative process designed to take your idea from concept to reality.
           </p>
         </div>
 

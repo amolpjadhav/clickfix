@@ -5,36 +5,36 @@ import { DraftingCompass, Cpu, Rocket, Check, ArrowRight, Terminal } from "lucid
 const services = [
   {
     id: "blueprint",
-    title: "The Blueprint",
-    subtitle: "Architecture & Design",
-    description: "Stop building on shaky foundations. I provide comprehensive architecture reviews and system design documents to ensure your stack can handle future scale.",
+    title: "System Architecture",
+    subtitle: "Design & Strategy",
+    description: "I design robust, scalable systems from day one. Whether it's choosing the right database or planning microservices, I ensure your foundation is solid.",
     icon: DraftingCompass,
     accentColor: "text-cyan-400",
     borderColor: "group-hover:border-cyan-500/50",
     glowColor: "group-hover:shadow-cyan-500/20",
-    features: ["System Architecture Audit", "Database Schema Optimization", "Microservices Strategy"]
+    features: ["Tech Stack Selection", "Database Schema Design", "Cloud Infrastructure Planning"]
   },
   {
-    id: "overhaul",
-    title: "The Overhaul",
-    subtitle: "Refactoring & Scaling",
-    description: "Legacy code slowing you down? I execute surgical refactors on live systems, migrating monoliths to microservices and optimizing API throughput without downtime.",
+    id: "development",
+    title: "Full-Stack Development",
+    subtitle: "Web & Mobile Build",
+    description: "End-to-end application development using modern stacks. I build clean, maintainable code that drives your business forward, from MVP to production.",
     icon: Cpu,
     accentColor: "text-lime-400",
     borderColor: "group-hover:border-lime-500/50",
     glowColor: "group-hover:shadow-lime-500/20",
-    features: ["GraphQL/REST API Scaling", "Legacy Migration (Strangler Fig)", "Thundering Herd Mitigation"]
+    features: ["React/Next.js Web Apps", "Mobile App Development", "API Development"]
   },
   {
-    id: "launchpad",
-    title: "The Launchpad",
-    subtitle: "High-Scale Integrations",
-    description: "Preparing for a major event or integration? I engineer the critical paths for high-traffic externalizations like complex integrations or Black Friday events.",
+    id: "maintenance",
+    title: "Maintenance & Support",
+    subtitle: "Long-term Care",
+    description: "Software needs care. I provide ongoing maintenance, performance optimization, and feature updates to keep your application running smoothly.",
     icon: Rocket,
     accentColor: "text-indigo-400",
     borderColor: "group-hover:border-indigo-500/50",
     glowColor: "group-hover:shadow-indigo-500/20",
-    features: ["3rd Party Integration Architecture", "Load Testing & Capacity Planning", "Event-Driven Architecture"]
+    features: ["Bug Fixes & Updates", "Performance Tuning", "Security Patching"]
   }
 ];
 
@@ -47,13 +47,13 @@ export default function Services() {
             className="flex items-center gap-2 mb-4"
           >
             <Terminal className="w-5 h-5 text-cyan-400" />
-            <span className="font-mono text-sm text-cyan-400 tracking-wider uppercase">// Engineering Protocols</span>
+            <span className="font-mono text-sm text-cyan-400 tracking-wider uppercase">// Services</span>
           </div>
           
           <h2 
             className="text-4xl md:text-5xl font-bold text-white font-mono"
           >
-            Choose your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-lime-400">upgrade path</span>.
+            Comprehensive <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-lime-400">Technical Services</span>.
           </h2>
         </div>
 

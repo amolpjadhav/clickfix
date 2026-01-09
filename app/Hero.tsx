@@ -4,37 +4,27 @@ import { ArrowRight, ShieldAlert, CheckCircle2, TrendingUp } from "lucide-react"
 
 export default function Hero() {
   return (
-    <section className="relative w-full max-w-7xl mx-auto px-6 pt-20 pb-16 md:pt-24 md:pb-24 lg:pt-24 lg:pb-32 overflow-hidden">
+    <section className="relative w-full max-w-7xl mx-auto px-6 pt-4 pb-16 md:pt-8 md:pb-24 lg:pt-12 lg:pb-32 overflow-hidden">
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
         {/* Left Column: Value Prop */}
         <div 
           className="space-y-4"
         >
-          {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-lime-400">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-500"></span>
-            </span>
-            SYSTEM STATUS: ONLINE // OPEN FOR RETAINERS
-          </div>
-
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white font-mono">
-            Digital debt is <br />
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white font-mono animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            Your Digital Handyman <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-lime-400">
-              stalling your growth.
+              for Web & Mobile.
             </span>
           </h1>
           
-          <p className="text-lg text-slate-400 max-w-xl leading-relaxed">
-            Senior Full-Stack Consultant specializing in system architecture and legacy modernization. I fix the complex scaling issues that are slowing down your product roadmap.
+          <p className="text-lg text-slate-400 max-w-xl leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            I build end-to-end web and mobile applications and provide ongoing maintenance. I handle the engineering so you can focus on your business.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <a href="#contact" className="group relative px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold font-mono rounded-sm transition-all flex items-center justify-center gap-2">
-              INITIATE AUDIT
+              BOOK CONSULTATION
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <button className="px-8 py-4 border border-slate-700 hover:border-slate-500 text-slate-300 font-mono rounded-sm transition-all">
@@ -43,7 +33,7 @@ export default function Hero() {
           </div>
 
           {/* Trust Signals / Stats */}
-          <div className="pt-8 border-t border-slate-800 grid grid-cols-3 gap-4">
+          <div className="pt-8 border-t border-slate-800 grid grid-cols-3 gap-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
             <div>
               <h3 className="text-2xl font-bold text-white font-mono">$10.4B</h3>
               <p className="text-xs text-slate-500 uppercase tracking-wider">Revenue Impact</p>
