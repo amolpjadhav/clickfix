@@ -4,13 +4,13 @@ import { ArrowRight, ShieldAlert, CheckCircle2, TrendingUp } from "lucide-react"
 
 export default function Hero() {
   return (
-    <section className="relative w-full max-w-7xl mx-auto px-6 pt-20 pb-16 md:pt-28 md:pb-24 lg:pt-32 lg:pb-32 overflow-hidden">
+    <section className="relative w-full max-w-7xl mx-auto px-6 pt-20 pb-16 md:pt-24 md:pb-24 lg:pt-24 lg:pb-32 overflow-hidden">
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
         {/* Left Column: Value Prop */}
         <div 
-          className="space-y-8"
+          className="space-y-4"
         >
           {/* Status Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-lime-400">

@@ -1,5 +1,3 @@
-'use client';
-
 export default function TechStack() {
   const stack = [
     "TypeScript", "Node.js", "React", "Next.js", "AWS", "GraphQL", "PostgreSQL", "Docker", "Kubernetes", "Redis"
@@ -22,10 +20,6 @@ export default function TechStack() {
           <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-slate-950 to-transparent" />
         </div>
       </div>
-      <style jsx>{`
-        .animate-marquee { animation: marquee 20s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-      `}</style>
     </section>
   );
 }
