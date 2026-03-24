@@ -23,6 +23,11 @@ export default function Navbar() {
             <a href="#blog" className="hover:text-cyan-400 transition-colors">Blog</a>
             <a href="#community" className="hover:text-cyan-400 transition-colors">Community</a>
             <a href="#faq" className="hover:text-cyan-400 transition-colors">FAQ</a>
+            <a href="/design" className="hover:text-lime-400 transition-colors flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-lime-400 inline-block"></span>
+              Design Studio
+            </a>
+            <a href="/feed" className="hover:text-indigo-400 transition-colors">Feed</a>
             <a href="#contact" className="px-4 py-2 bg-cyan-500/10 text-cyan-400 border border-cyan-500/50 rounded-sm hover:bg-cyan-500 hover:text-slate-950 transition-all">
               Book Consultation
             </a>
@@ -42,6 +47,8 @@ export default function Navbar() {
             <a href="#blog" className="block text-slate-400 hover:text-cyan-400" onClick={() => setIsOpen(false)}>Blog</a>
             <a href="#community" className="block text-slate-400 hover:text-cyan-400" onClick={() => setIsOpen(false)}>Community</a>
             <a href="#faq" className="block text-slate-400 hover:text-cyan-400" onClick={() => setIsOpen(false)}>FAQ</a>
+            <a href="/design" className="block text-lime-400 font-bold" onClick={() => setIsOpen(false)}>⬡ Design Studio</a>
+            <a href="/feed" className="block text-indigo-400" onClick={() => setIsOpen(false)}>Community Feed</a>
             <a href="#contact" className="block text-cyan-400 font-bold" onClick={() => setIsOpen(false)}>Book Consultation</a>
           </div>
         )}

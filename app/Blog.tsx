@@ -1,22 +1,27 @@
 'use client';
 
-import { ArrowRight, FileText, Mail, Loader2, Check } from 'lucide-react';
-import Link from 'next/link';
-import { blogPosts } from './data';
-import { useState } from 'react';
+import { ArrowRight, FileText, Mail, Loader2, Check } from "lucide-react";
+import Link from "next/link";
+import { blogPosts } from "./data";
+import { useState } from "react";
+
+const TAG_COLORS: Record<string, string> = {
+  Performance: "text-lime-400 border-lime-500/30 bg-lime-500/8",
+  Architecture: "text-cyan-400 border-cyan-500/30 bg-cyan-500/8",
+  React: "text-indigo-400 border-indigo-500/30 bg-indigo-500/8",
+};
 
 export default function Blog() {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('loading');
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setStatus('success');
-    setEmail('');
-    setTimeout(() => setStatus('idle'), 3000);
+    setStatus("loading");
+    await new Promise((r) => setTimeout(r, 1400));
+    setStatus("success");
+    setEmail("");
+    setTimeout(() => setStatus("idle"), 3000);
   };
 
   return (
@@ -25,48 +30,60 @@ export default function Blog() {
         <div className="flex items-end justify-between mb-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <FileText className="w-5 h-5 text-lime-400" />
-              <span className="font-mono text-sm text-lime-400 tracking-wider uppercase">// Engineering Log</span>
+              <FileText className="w-4 h-4 text-lime-400" />
+              <span className="font-mono text-sm text-lime-400 tracking-widest uppercase">// Engineering Log</span>
             </div>
-            <h2 className="text-3xl font-bold text-white font-mono">
-              Technical <span className="text-cyan-400">Insights</span>
+            <h2 className="font-mono font-bold text-4xl md:text-5xl text-white">
+              Technical{" "}
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-lime-400 to-cyan-400">Insights</span>.
             </h2>
           </div>
-          <a href="#" className="hidden md:flex items-center gap-2 text-slate-400 font-mono text-sm hover:text-white transition-colors">
+          <a href="#" className="hidden md:flex items-center gap-2 text-slate-500 font-mono text-sm hover:text-slate-300 transition-colors">
             VIEW ARCHIVE <ArrowRight className="w-4 h-4" />
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {blogPosts.map((post, i) => (
-            <Link href={`/blog/${post.slug}`} key={i} className="group flex flex-col h-full bg-slate-900/20 border border-slate-800 p-6 rounded-sm hover:border-lime-500/50 transition-all hover:-translate-y-1 cursor-pointer">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-mono text-cyan-400 border border-cyan-500/30 px-2 py-1 rounded-sm bg-cyan-500/10">
-                  {post.tag}
-                </span>
-                <span className="text-xs font-mono text-slate-500">{post.readTime}</span>
-              </div>
-              
-              <h3 className="text-xl font-bold text-slate-200 mb-3 group-hover:text-lime-400 transition-colors">
-                {post.title}
-              </h3>
-              
-              <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
-                {post.excerpt}
-              </p>
-              
-              <div className="pt-6 border-t border-slate-800/50 flex items-center text-slate-300 text-sm font-mono font-bold group-hover:text-white transition-colors">
-                READ POST <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            <Link
+              href={`/blog/${post.slug}`}
+              key={i}
+              className="group flex flex-col bg-slate-900/40 border border-slate-800 hover:border-slate-700 rounded-sm overflow-hidden card-beam transition-all hover:-translate-y-1"
+            >
+              {/* Color bar */}
+              <div className={`h-0.5 w-full ${
+                i === 0 ? "bg-linear-to-r from-lime-500 to-cyan-500" :
+                i === 1 ? "bg-linear-to-r from-cyan-500 to-indigo-500" :
+                          "bg-linear-to-r from-indigo-500 to-lime-500"
+              }`} />
+
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-5">
+                  <span className={`font-mono text-xs px-2.5 py-1 rounded-sm border ${TAG_COLORS[post.tag] ?? "text-slate-400 border-slate-700"}`}>
+                    {post.tag}
+                  </span>
+                  <span className="font-mono text-xs text-slate-600">{post.readTime}</span>
+                </div>
+
+                <h3 className="font-mono font-bold text-lg text-slate-200 mb-3 group-hover:text-lime-400 transition-colors leading-snug flex-none">
+                  {post.title}
+                </h3>
+                <p className="text-slate-400 text-sm leading-relaxed flex-1 mb-6">{post.excerpt}</p>
+
+                <div className="flex items-center gap-2 font-mono text-sm text-slate-400 group-hover:text-white transition-colors pt-5 border-t border-slate-800/60">
+                  READ POST <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
               </div>
             </Link>
           ))}
         </div>
 
-        {/* Subscribe Form */}
-        <div className="mt-16 p-8 bg-slate-900/30 border border-slate-800 rounded-sm">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* Subscribe */}
+        <div className="mt-14 p-8 bg-linear-to-br from-slate-900/60 to-slate-950/60 border border-slate-800 rounded-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/3 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="space-y-2 max-w-md">
-              <h3 className="text-xl font-bold text-white font-mono flex items-center gap-2">
+              <h3 className="font-mono font-bold text-xl text-white flex items-center gap-2">
                 <Mail className="w-5 h-5 text-lime-400" />
                 Subscribe to Engineering Blog
               </h3>
@@ -74,7 +91,6 @@ export default function Blog() {
                 Get technical deep dives and architecture patterns delivered to your inbox. No spam, just code.
               </p>
             </div>
-
             <form onSubmit={handleSubscribe} className="flex w-full md:w-auto gap-2">
               <input
                 type="email"
@@ -82,24 +98,16 @@ export default function Blog() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="dev@example.com"
                 required
-                className="bg-slate-950 border border-slate-800 text-slate-200 px-4 py-2 rounded-sm focus:outline-none focus:border-cyan-500 w-full md:w-64 font-mono text-sm"
+                className="bg-slate-950 border border-slate-800 text-slate-200 px-4 py-2.5 rounded-sm focus:outline-none focus:border-cyan-500/60 w-full md:w-64 font-mono text-sm transition-colors"
               />
               <button
                 type="submit"
-                disabled={status === 'loading' || status === 'success'}
-                className="bg-cyan-500/10 text-cyan-400 border border-cyan-500/50 px-4 py-2 rounded-sm hover:bg-cyan-500 hover:text-slate-950 transition-all font-mono text-sm font-bold flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed min-w-[140px] justify-center"
+                disabled={status !== "idle"}
+                className="bg-cyan-500/10 text-cyan-400 border border-cyan-500/50 px-5 py-2.5 rounded-sm hover:bg-cyan-500 hover:text-slate-950 transition-all font-mono text-sm font-bold flex items-center gap-2 min-w-36 justify-center disabled:opacity-60"
               >
-                {status === 'loading' ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : status === 'success' ? (
-                  <>
-                    <Check className="w-4 h-4" /> SUBSCRIBED
-                  </>
-                ) : (
-                  <>
-                    SUBSCRIBE <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
+                {status === "loading" ? <Loader2 className="w-4 h-4 animate-spin" /> :
+                 status === "success" ? <><Check className="w-4 h-4" /> DONE</> :
+                 <>SUBSCRIBE <ArrowRight className="w-4 h-4" /></>}
               </button>
             </form>
           </div>

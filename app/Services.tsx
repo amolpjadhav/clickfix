@@ -1,102 +1,109 @@
 'use client';
 
-import { DraftingCompass, Cpu, Rocket, Check, ArrowRight, Terminal } from "lucide-react";
+import { DraftingCompass, Cpu, Rocket, Check, Terminal } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-const services = [
+const SERVICES = [
   {
-    id: "blueprint",
-    title: "System Architecture",
-    subtitle: "Design & Strategy",
-    description: "I design robust, scalable systems from day one. Whether it's choosing the right database or planning microservices, I ensure your foundation is solid.",
+    num: "01", id: "arch", accent: "cyan",
+    title: "System Architecture", subtitle: "Design & Strategy",
     icon: DraftingCompass,
-    accentColor: "text-cyan-400",
-    borderColor: "group-hover:border-cyan-500/50",
-    glowColor: "group-hover:shadow-cyan-500/20",
-    features: ["Tech Stack Selection", "Database Schema Design", "Cloud Infrastructure Planning"]
+    description: "Robust, scalable systems from day one. Whether it's choosing the right database or designing microservices, I ensure your foundation is rock-solid before a single line of code.",
+    features: ["Tech Stack Selection", "Database Schema Design", "Cloud Infrastructure Planning"],
   },
   {
-    id: "development",
-    title: "Full-Stack Development",
-    subtitle: "Web & Mobile Build",
-    description: "End-to-end application development using modern stacks. I build clean, maintainable code that drives your business forward, from MVP to production.",
+    num: "02", id: "dev", accent: "lime",
+    title: "Full-Stack Development", subtitle: "Web & Mobile Build",
     icon: Cpu,
-    accentColor: "text-lime-400",
-    borderColor: "group-hover:border-lime-500/50",
-    glowColor: "group-hover:shadow-lime-500/20",
-    features: ["React/Next.js Web Apps", "Mobile App Development", "API Development"]
+    description: "End-to-end application development with modern stacks. Clean, maintainable code that drives your business forward — from scrappy MVP to production-grade scale.",
+    features: ["React / Next.js Web Apps", "Mobile App Development", "API & Backend Services"],
   },
   {
-    id: "maintenance",
-    title: "Maintenance & Support",
-    subtitle: "Long-term Care",
-    description: "Software needs care. I provide ongoing maintenance, performance optimization, and feature updates to keep your application running smoothly.",
+    num: "03", id: "maint", accent: "indigo",
+    title: "Maintenance & Support", subtitle: "Long-term Care",
     icon: Rocket,
-    accentColor: "text-indigo-400",
-    borderColor: "group-hover:border-indigo-500/50",
-    glowColor: "group-hover:shadow-indigo-500/20",
-    features: ["Bug Fixes & Updates", "Performance Tuning", "Security Patching"]
-  }
-];
+    description: "Software needs constant care. Ongoing maintenance, performance optimisation, and feature updates to keep your app running smoothly as your user base grows.",
+    features: ["Bug Fixes & Updates", "Performance Tuning", "Security Patching"],
+  },
+] as const;
 
-export default function Services() {
-  return (
-    <section id="services" className="w-full py-16 md:py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="mb-12 md:mb-16">
-          <div
-            className="flex items-center gap-2 mb-4"
-          >
-            <Terminal className="w-5 h-5 text-cyan-400" />
-            <span className="font-mono text-sm text-cyan-400 tracking-wider uppercase">// Services</span>
-          </div>
-          
-          <h2 
-            className="text-4xl md:text-5xl font-bold text-white font-mono"
-          >
-            Comprehensive <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-lime-400">Technical Services</span>.
-          </h2>
-        </div>
+const A = {
+  cyan:   { text: "text-cyan-400",   border: "hover:border-cyan-500/50",   bg: "bg-cyan-400/10",   num: "text-cyan-400",   shadow: "hover:shadow-cyan-500/10"   },
+  lime:   { text: "text-lime-400",   border: "hover:border-lime-500/50",   bg: "bg-lime-400/10",   num: "text-lime-400",   shadow: "hover:shadow-lime-500/10"   },
+  indigo: { text: "text-indigo-400", border: "hover:border-indigo-500/50", bg: "bg-indigo-400/10", num: "text-indigo-400", shadow: "hover:shadow-indigo-500/10" },
+} as const;
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+function Card({ svc, delay }: { svc: typeof SERVICES[number]; delay: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [vis, setVis] = useState(false);
+  useEffect(() => {
+    const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.12 });
+    if (ref.current) o.observe(ref.current);
+    return () => o.disconnect();
+  }, []);
 
-function ServiceCard({ service, index }: { service: typeof services[0], index: number }) {
-  const Icon = service.icon;
+  const a = A[svc.accent];
+  const Icon = svc.icon;
+
   return (
     <div
-      className={`group relative h-full bg-slate-900/40 backdrop-blur-sm border border-slate-800 p-8 rounded-sm transition-all duration-300 hover:-translate-y-2 ${service.borderColor} hover:shadow-2xl ${service.glowColor}`}
+      ref={ref}
+      className={`group relative h-full bg-slate-900/50 border border-slate-800 rounded-sm p-8
+        transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl card-beam gradient-border
+        ${a.border} ${a.shadow}
+        ${vis ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+      `}
+      style={{ transitionDelay: `${delay}ms` }}
     >
-      {/* Tech Corners */}
-      <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-slate-700 group-hover:border-slate-500 transition-colors" />
-      <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-slate-700 group-hover:border-slate-500 transition-colors" />
-      <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-slate-700 group-hover:border-slate-500 transition-colors" />
-      <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-slate-700 group-hover:border-slate-500 transition-colors" />
+      {/* corner accents */}
+      {["top-0 left-0 border-t-2 border-l-2", "top-0 right-0 border-t-2 border-r-2", "bottom-0 left-0 border-b-2 border-l-2", "bottom-0 right-0 border-b-2 border-r-2"].map((cls) => (
+        <div key={cls} className={`absolute w-4 h-4 ${cls} border-slate-700 group-hover:border-slate-500 transition-colors`} />
+      ))}
 
-      <div className="mb-6">
-        <div className={`w-12 h-12 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-          <Icon className={`w-6 h-6 ${service.accentColor}`} />
-        </div>
-        <h3 className="text-2xl font-bold text-white font-mono mb-1">{service.title}</h3>
-        <p className={`text-xs font-mono uppercase tracking-widest ${service.accentColor} opacity-80`}>{service.subtitle}</p>
+      {/* watermark number */}
+      <div className={`absolute top-5 right-7 font-mono font-bold text-5xl ${a.num} opacity-[0.07] select-none group-hover:opacity-[0.14] transition-opacity`}>
+        {svc.num}
       </div>
 
-      <p className="text-slate-400 leading-relaxed mb-8 min-h-[80px]">{service.description}</p>
+      {/* icon */}
+      <div className={`w-11 h-11 rounded-lg border border-slate-800 ${a.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+        <Icon className={`w-5 h-5 ${a.text}`} />
+      </div>
 
-      <ul className="space-y-3 mb-8">
-        {service.features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-3 text-sm text-slate-300">
-            <Check className={`w-4 h-4 mt-0.5 ${service.accentColor}`} />
-            <span>{feature}</span>
+      <h3 className="font-mono font-bold text-xl text-white mb-0.5">{svc.title}</h3>
+      <p className={`font-mono text-xs uppercase tracking-widest ${a.text} opacity-70 mb-5`}>{svc.subtitle}</p>
+      <p className="text-slate-400 text-sm leading-relaxed mb-8">{svc.description}</p>
+
+      <ul className="space-y-3">
+        {svc.features.map((f) => (
+          <li key={f} className="flex items-center gap-3 text-sm text-slate-300">
+            <Check className={`w-4 h-4 flex-none ${a.text}`} />
+            {f}
           </li>
         ))}
       </ul>
     </div>
+  );
+}
+
+export default function Services() {
+  return (
+    <section id="services" className="w-full py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-16">
+          <div className="flex items-center gap-2 mb-4">
+            <Terminal className="w-4 h-4 text-cyan-400" />
+            <span className="font-mono text-sm text-cyan-400 tracking-widest uppercase">// Services</span>
+          </div>
+          <h2 className="font-mono font-bold text-4xl md:text-5xl text-white">
+            Comprehensive{" "}
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-lime-400">Technical Services</span>.
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {SERVICES.map((svc, i) => <Card key={svc.id} svc={svc} delay={i * 100} />)}
+        </div>
+      </div>
+    </section>
   );
 }
